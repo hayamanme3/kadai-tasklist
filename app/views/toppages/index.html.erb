@@ -1,0 +1,17 @@
+<% if true#current_user.present? %>
+<%#= ログインしていない時の処理 %>
+  <div class="center jumbotron">
+    <div class="text-center">
+      <h1>Welcome to the Tasklist</h1>
+      
+              <ul class="nav navbar-nav navbar-right">
+          <li><%= link_to 'Signup', signup_path %></li>
+          <li><a href="#">Login</a></li>
+        </ul>
+        
+    </div>
+  </div>
+<% else %>
+<%#= ログインした時の処理 %>
+  <%= render "tasks/index", tasks: @tasks %>
+<% end %>
