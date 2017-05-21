@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     password = params[:session][:password]
     if login(email, password)
       flash[:success] = 'ログインに成功しました。'
-      redirect_to @task
+      redirect_to root_url
     else
       flash.now[:danger] = 'ログインに失敗しました。'
       render 'new'
@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session[:task_id] = nil
+    session[:user_id] = nil
     flash[:success] = 'ログアウトしました。'
     redirect_to root_path
   end
@@ -23,10 +23,10 @@ class SessionsController < ApplicationController
   private
 
   def login(email, password)
-    @task = Task.find_by(email: email)
-    if @task && @task.authenticate(password)
+    @user = User.find_by(email: email)
+    if @user && @user.authenticate(password)
       # ログイン成功
-      session[:task_id] = @task.id
+      session[:user_id] = @user.id
       return true
     else
       # ログイン失敗

@@ -1,17 +1,20 @@
-<% if true#current_user.present? %>
-<%#= ログインしていない時の処理 %>
+<% if logged_in? %>
+  <div class="row">
+     <div class="text-center">
+      <p>ログイン完了ユーザ: <%= current_user.name %></p>
+      <%= link_to '新規作成', new_task_path, class: 'btn btn-lg btn-primary' %>
+    </div>
+
+
+  <div class="col-xs-8">
+  <%= render 'tasks/tasks', tasks: @tasks, user: @user %>
+  </div>
+
+<% else %>
   <div class="center jumbotron">
     <div class="text-center">
-      <h1>Welcome to the Tasklist</h1>
-      
-              <ul class="nav navbar-nav navbar-right">
-          <li><%= link_to 'Signup', signup_path %></li>
-          <li><a href="#">Login</a></li>
-        </ul>
-        
+      <h1>Welcome to the tasks</h1>
+      <%= link_to 'Sign up now!', signup_path, class: 'btn btn-lg btn-primary' %>
     </div>
   </div>
-<% else %>
-<%#= ログインした時の処理 %>
-  <%= render "tasks/index", tasks: @tasks %>
 <% end %>

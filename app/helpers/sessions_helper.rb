@@ -1,6 +1,6 @@
 module SessionsHelper
   def current_user
-    @current_user ||= Task.find_by(id: session[:task_id])
+    @current_user ||= User.find_by(id: session[:user_id])
   end
 
   def logged_in?

@@ -1,5 +1,10 @@
 class ToppagesController < ApplicationController
   def index
-    #@tasks = current_user.tasks.oeder(created_at: :desc) if current_user
+    
+    if logged_in?
+      @user = current_user
+      @tasks = current_user.tasks.order('created_at DESC').page(params[:page])
+    end
+ 
   end
 end
