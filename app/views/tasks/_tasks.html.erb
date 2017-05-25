@@ -16,11 +16,8 @@
         <div>
           <% if current_user == task.user %>
            <%= link_to "削除", task, method: :delete, data: { confirm: "本当に消してもいいですか?" }, class: 'btn btn-danger btn-xs' %>
-           <% @tasks.each do |task| %>
-             <tr>
-              <td><%= link_to "編集", task, class: 'btn btn-danger btn-xs' %></td>
-             </tr>
-           <% end %>
+           <%= link_to "編集", task, class: 'btn btn-danger btn-xs' %></td>
+            
       
           <% end %>
         </div>
